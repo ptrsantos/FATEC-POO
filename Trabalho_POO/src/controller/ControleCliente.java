@@ -9,12 +9,12 @@ public class ControleCliente {
     Cliente cliente = new Cliente();
     ClienteDAO cliDao = new ClienteDAO();
     
-    public void inserirCliente(ArrayList<String> dados){
+    public boolean inserirCliente(ArrayList<String> dados){
         cliente.setNomeDoCliente(dados.get(0));
         cliente.setRg(dados.get(1));
         cliente.setEmail(dados.get(2));
         cliente.setTelefone(dados.get(3));
-        cliDao.inserirCliente(cliente);
+        return cliDao.inserirCliente(cliente);
     }
     
     public ArrayList<Cliente> listarCliente(){

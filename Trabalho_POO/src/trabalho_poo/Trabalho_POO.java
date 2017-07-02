@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.dao.PedidoDAO;
@@ -91,6 +92,28 @@ public class Trabalho_POO {
        /* ItemPedido item = new ItemPedido();
         item.setQuantidade(5);*/
        
+      ConsultaDAO conDao = new ConsultaDAO();
+       /*for( Object e1: conDao.retornMaisVendidos()){
+           System.out.println(e1.toString());
+           ArrayList aux = new ArrayList();
+           ArrayList aux2 = new ArrayList();
+           aux.add(e1);
+           for ( Object e2 : aux){
+               System.out.println(e2.toString());
+               for(Object e3 : aux2 )
+                System.out.println(e3.toString());    
+                    aux.add(e1);
+           }
+           aux = null;
+       }*/
+
+        
+       /*Iterator it1 = conDao.retornMaisVendidos().iterator();
+       while(it1.hasNext()){
+           System.out.println("it1 = " + it1.next());
+           Iterator it2 = it1.next().iterator();
+       }*/
+   
 
        }
        

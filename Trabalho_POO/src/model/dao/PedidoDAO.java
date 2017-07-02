@@ -94,7 +94,7 @@ public class PedidoDAO {
                 pedido.setCodCliente(rs.getInt("Cod_Cliente"));
                 //System.out.println(rs.getString("Nome"));
                 
-                pedido.setData(rs.getDate("Quantidade"));
+                pedido.setData(rs.getDate("Data"));
                 //System.out.println(rs.getString("Rg"));
  
                 pedidos.add(pedido);
@@ -108,4 +108,34 @@ public class PedidoDAO {
         } 
     }
     
+    public Pedido retornaPedido(int codCliente){
+       String sql ="SELECT * FROM Pedido where Cod_Cliente = " + codCliente;
+       Pedido pedido = null;
+        con = Conexao.iniciarConexao();
+        try {
+            
+            pstm =  con.prepareStatement(sql);
+            rs = pstm.executeQuery();
+            while(rs.next()){
+                pedido = new Pedido();
+                
+                pedido.setIdPedido(rs.getInt("Id_Pedido"));
+                //System.out.println(rs.getInt("Id_Cliente"));
+                
+                pedido.setCodCliente(rs.getInt("Cod_Cliente"));
+                //System.out.println(rs.getString("Nome"));
+                
+                pedido.setData(rs.getDate("Data"));
+                //System.out.println(rs.getString("Rg"));
+ 
+            }
+            Conexao.fecharConexao(con, pstm);
+            return pedido;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            Conexao.fecharConexao(con, pstm);
+            return null;
+        }
+
+    }
 }

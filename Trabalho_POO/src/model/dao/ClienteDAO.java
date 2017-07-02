@@ -21,7 +21,7 @@ public class ClienteDAO {
         clientes = new ArrayList<>();
     }
     
-    public void inserirCliente(Cliente cliente){
+    public boolean inserirCliente(Cliente cliente){
         String sql ="INSERT INTO Cliente(nome, Rg, Email, Telefone) VALUES(?,?,?,?)";
         con = Conexao.iniciarConexao();
         try {
@@ -31,8 +31,10 @@ public class ClienteDAO {
             pstm.setString(3, cliente.getEmail());
             pstm.setString(4, cliente.getTelefone());
             pstm.executeUpdate();
+            return true;
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
+            return false;
         }finally{
             Conexao.fecharConexao(con, pstm);
         }

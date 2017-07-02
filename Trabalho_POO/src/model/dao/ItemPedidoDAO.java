@@ -36,4 +36,33 @@ public class ItemPedidoDAO {
         } 
         Conexao.fecharConexao(con, pstm);
     }
+    
+        public ItemPedido retornaItemPedido(Pedido pedido){
+        String sql ="SELECT * FROM Item_Pedido where Cod_Pedido = " + pedido.getIdPedido();
+        ItemPedido itemPedido = new ItemPedido();
+        //itemPedido.setPedido(pedido);
+        con = Conexao.iniciarConexao();
+        try {
+            pstm =  con.prepareStatement(sql);
+            rs = pstm.executeQuery();
+            while(rs.next()){
+                Produto produto = new Produto();
+                int qtde;
+                produto.setIdProduto(rs.getInt("Cod_Produto"));
+                qtde = rs.getInt("Quantidade");
+
+                itemPedido.setProdutos(produto);
+                itemPedido.setQuantidade(qtde);
+            }
+            Conexao.fecharConexao(con, pstm);
+            System.out.println("Quantidade ItemPedio em ConsultDAO = " + itemPedido.getQuantidade());
+            return itemPedido;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+            Conexao.fecharConexao(con, pstm);
+            return null;
+        }
+
+    } 
+
 }

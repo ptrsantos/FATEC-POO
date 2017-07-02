@@ -9,6 +9,7 @@ import controller.ControleCliente;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import model.entidades.Cliente;
+import view.consulta.FrmConsulta;
 
 /**
  *

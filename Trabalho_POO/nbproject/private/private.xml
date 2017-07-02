@@ -3,10 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Paulo/Documents/WorkSpaceNetBeans/Trabalho_POO/src/model/dao/ClienteDAO.java</file>
-            <file>file:/C:/Users/Paulo/Documents/WorkSpaceNetBeans/Trabalho_POO/src/model/dao/ItemPedidoDAO.java</file>
-            <file>file:/C:/Users/Paulo/Documents/WorkSpaceNetBeans/Trabalho_POO/src/controle/ControleItemPedido.java</file>
-            <file>file:/C:/Users/Paulo/Documents/WorkSpaceNetBeans/Trabalho_POO/src/controle/ControlePedido.java</file>
+            <file>file:/E:/WorkSpaceNetBeans/Trabalho_POO/src/view/Pedido/FormPedido.java</file>
+            <file>file:/E:/WorkSpaceNetBeans/Trabalho_POO/src/view/consulta/FrmConsulta.java</file>
         </group>
     </open-files>
 </project-private>

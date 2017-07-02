@@ -204,8 +204,8 @@ public class FrmProduto extends javax.swing.JFrame {
             }
         });
 
-        jButtonListar.setBackground(new java.awt.Color(153, 153, 153));
-        jButtonListar.setText("Listar");
+        jButtonListar.setBackground(new java.awt.Color(129, 176, 155));
+        jButtonListar.setText("Listar Produtos");
         jButtonListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonListarActionPerformed(evt);
@@ -226,7 +226,7 @@ public class FrmProduto extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,11 +248,11 @@ public class FrmProduto extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonListar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(24, 24, 24)
                         .addComponent(jButtonPrimeiro, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -366,12 +366,9 @@ public class FrmProduto extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Os Dados não foram cadastrados");
         }
-        this.jTextFieldCodigo.setText("");
-        this.jTextFieldNome.setText("");
-        this.jTextFieldValor.setText("");
-        this.jButtonSalvar.setEnabled(true);
-        this.jButtonAlterar.setEnabled(false);
-        this.jButtonExcluir.setEnabled(false);
+        limparCampos();
+        flag = 1;
+        controlaEstadoBotoes();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
@@ -407,6 +404,10 @@ public class FrmProduto extends javax.swing.JFrame {
         if(resposta==JOptionPane.YES_OPTION){
             if(controlaProd.excluirProduto(Integer.parseInt(this.jTextFieldCodigo.getText())))
             JOptionPane.showMessageDialog(null, "Cadastro exlcuido com sucesso!");
+            limparCampos();
+            this.jButtonSalvar.setEnabled(false);
+            this.jButtonAlterar.setEnabled(true);
+            this.jButtonExcluir.setEnabled(true);
         }else{
             JOptionPane.showMessageDialog(null,"Exclusão Cancelada!");
         }

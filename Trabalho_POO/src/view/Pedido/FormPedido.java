@@ -7,6 +7,7 @@ package view.Pedido;
 
 import controller.ControleItemPedido;
 import controller.ControlePedido;
+import controller.ControleProduto;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -36,6 +37,7 @@ public class FormPedido extends javax.swing.JFrame {
     private ControlePedido contPed = null;
     private static int numLinhas;
     private FrmTabelaClientePedido listaCliente;
+    private FrmTabelaProduto listaProduto;
     private JFrame janela;
     
     public FormPedido() {
@@ -65,6 +67,16 @@ public class FormPedido extends javax.swing.JFrame {
     }
     public void recebeJanelaPrincipal(JFrame janela){
         this.janela = janela;
+    }
+        public void recebeLista(String dados[]){
+        String lista[] = new String[5];
+        lista = dados;
+        ControleProduto cp = new ControleProduto();
+        //if(indice >= 0 && indice < cl.retornaTamanhoDaLista()){
+            this.jTextFieldCodProduto.setText(dados[0]);
+            this.jTextFielNomeProduto.setText(dados[1]);
+           // this.jTextFieldValor.setText(dados[2]);
+
     }
     private void limpaTabelaPedidos(){
         DefaultTableModel modelo = (DefaultTableModel) jTableItens.getModel();
@@ -225,9 +237,14 @@ public class FormPedido extends javax.swing.JFrame {
             }
         });
 
-        jButtonListarProdutos.setBackground(new java.awt.Color(153, 153, 153));
+        jButtonListarProdutos.setBackground(new java.awt.Color(129, 176, 155));
         jButtonListarProdutos.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButtonListarProdutos.setText("Listar Produtos");
+        jButtonListarProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonListarProdutosActionPerformed(evt);
+            }
+        });
 
         jSeparator9.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -392,7 +409,7 @@ public class FormPedido extends javax.swing.JFrame {
             }
         });
 
-        jButtonListarClientes.setBackground(new java.awt.Color(153, 153, 153));
+        jButtonListarClientes.setBackground(new java.awt.Color(129, 176, 155));
         jButtonListarClientes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButtonListarClientes.setText("Listar Clientes");
         jButtonListarClientes.addActionListener(new java.awt.event.ActionListener() {
@@ -540,7 +557,7 @@ public class FormPedido extends javax.swing.JFrame {
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         String nome = this.jTextFieldBuscaProduto.getText();
         DefaultTableModel modelo = (DefaultTableModel) jTableProdutos.getModel();
-        Object vetor[] = new Object[5];
+        //Object vetor[] = new Object[5];
         
         modelo.setNumRows(0);
         for( Produto p : contPed.selecionarProduto(nome)){
@@ -616,7 +633,9 @@ public class FormPedido extends javax.swing.JFrame {
             //ControlePedido contPed = new ControlePedido();
             //contPed.confirmarPedido(itemPedido);
             this.jTextFieldCodPedido.setText(String.valueOf(itemPedido.getPedido().getIdPedido()));
+            this.jFormattedTextFieldData.setText("");
         }
+        this.jFormattedTextFieldData.setText("");
     }//GEN-LAST:event_jButtonConfirmarPedidoActionPerformed
 
     private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAdicionarActionPerformed
@@ -648,6 +667,14 @@ public class FormPedido extends javax.swing.JFrame {
         this.dispose();
         this.janela.setVisible(true);
     }//GEN-LAST:event_jButtonSairActionPerformed
+
+    private void jButtonListarProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarProdutosActionPerformed
+        listaProduto = new FrmTabelaProduto();
+        listaProduto.setVisible(true);
+        //this.setVisible(false);
+        listaProduto.recebeProduto(this);
+        this.dispose();
+    }//GEN-LAST:event_jButtonListarProdutosActionPerformed
 
     /**
      * @param args the command line arguments

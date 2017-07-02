@@ -232,7 +232,8 @@ public class FrmCliente extends javax.swing.JFrame {
             }
         });
 
-        jButtonListar.setText("Listar");
+        jButtonListar.setBackground(new java.awt.Color(129, 176, 155));
+        jButtonListar.setText("Listar Clientes");
         jButtonListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonListarActionPerformed(evt);
@@ -294,9 +295,9 @@ public class FrmCliente extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonListar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonListar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButtonPrimeiro, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -309,7 +310,7 @@ public class FrmCliente extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextFieldRg, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 119, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -409,12 +410,15 @@ public class FrmCliente extends javax.swing.JFrame {
         dados.add(this.jTextFieldRg.getText());
         dados.add(this.jTextFieldEmail.getText());
         dados.add(this.jTextFieldTelefone.getText());
-        controlaCli.inserirCliente(dados);
+        //controlaCli.inserirCliente(dados);
+        if (controlaCli.inserirCliente(dados)){
+            JOptionPane.showMessageDialog(null, "Dados Cadastrados Com Sucesso!");
+           this.atualizarLista();
+        }else{
+            JOptionPane.showMessageDialog(null, "Os Dados não foram cadastrados");
+        }
         atualizarLista();
-        this.jTextFieldNome.setText("");
-        this.jTextFieldRg.setText("");
-        this.jTextFieldEmail.setText("");
-        this.jTextFieldTelefone.setText("");
+        limparCampos();
         flag = 1;
         controlaEstadoBotoes();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
